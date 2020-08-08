@@ -1,0 +1,145 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="Dashboard">
+  <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+  <title>Dashio - Bootstrap Admin Template</title>
+  {% load static %}
+  <!-- Favicons -->
+  <link href="{% static 'img/favicon.png' %}" rel="icon">
+  <link href="{% static 'img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+  <link href="{% static 'lib/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'lib/font-awesome/css/font-awesome.css' %}" rel="stylesheet" />
+  <link href="{% static 'css/style.css' %}" rel="stylesheet">
+  <link href="{% static 'css/style-responsive.css' %}" rel="stylesheet">
+</head>
+
+<body>
+  <!-- **********************************************************************************************************************************************************
+      MAIN CONTENT
+      *********************************************************************************************************************************************************** -->
+  <div id="login-page">
+    <div class="container">
+      <div class="row">
+      <form class="form-login" action="/teacher/login" method="POST">
+        {% csrf_token %}
+        <h2 class="form-login-heading">sign in now</h2>
+        <div class="login-wrap">
+          <input type="email" name="email" class="form-control" placeholder="User ID" autofocus>
+          <br>
+          <input type="password" name="password" class="form-control" placeholder="Password">
+          <label class="checkbox" style="padding: 4px;">
+            <input type="checkbox" value="remember-me"> Remember me
+            <span class="pull-right">
+            <a data-toggle="modal" href="login.html#myModal"> Forgot Password?</a>
+            </span>
+            </label>
+          <button class="btn btn-theme btn-block" type="submit"><i class="fa fa-lock"></i> SIGN IN</button>
+          <hr>
+          <div class="registration">
+            Don't have an account yet?<br/>
+            <a class="" data-toggle="modal" href="#myModalRegister">
+              Create an account
+              </a>
+          </div>
+        </div>
+      </form>
+    </div>
+        <!-- Modal -->
+        <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Forgot Password ?</h4>
+              </div>
+              <div class="modal-body">
+                <p>Enter your e-mail address below to reset your password.</p>
+                <input type="text" name="email" placeholder="Email" autocomplete="off" class="form-control placeholder-no-fix">
+              </div>
+              <div class="modal-footer">
+                <button data-dismiss="modal" class="btn btn-default" type="button">Cancel</button>
+                <button class="btn btn-theme" type="button">Submit</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- modal -->
+
+        <!-- Modal Register -->
+        <form action="/teacher/create" class="form-horizontal style-form" method="POST">
+          {% csrf_token %}
+        <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModalRegister" class="modal fade">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Forgot Password ?</h4>
+              </div>
+              <div class="modal-body">    
+                  <div class="form-group">
+                    <div class="col-sm-10">
+                      <input type="text" name="first_name" class="form-control" placeholder="Enter First Name">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-sm-10">
+                      <input type="text" name="middle_name" class="form-control" placeholder="Enter Middle Name">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-sm-10">
+                      <input type="text" name="last_name" class="form-control" placeholder="Enter Last Name">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-sm-10">
+                      <input type="text" name="email" class="form-control" placeholder="Enter your Email">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-sm-10">
+                      <input type="password" name="password" class="form-control" placeholder="Enter your password">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-sm-10">
+                      <input type="password" name="confpass" class="form-control" placeholder="Confirm your password">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                  </div>
+                
+              </div>
+              <div class="modal-footer">
+                <input type="submit" class="btn btn-theme" value="Submit">
+                <button data-dismiss="modal" class="btn btn-default" type="button">Cancel</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+        <!-- modal register -->
+     
+    </div> 
+  </form>
+  </div>
+  <!-- js placed at the end of the document so the pages load faster -->
+  <script src="{% static 'lib/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'lib/bootstrap/js/bootstrap.min.js' %}"></script>
+  <!--BACKSTRETCH-->
+  <!-- You can use an image of whatever size. This script will stretch to fit in any screen size.-->
+  <script type="text/javascript" src="{% static 'lib/jquery.backstretch.min.js' %}"></script>
+  <script>
+    $.backstretch("{% static 'img/bg.png' %}", {
+      speed: 500
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,102 @@
+{% extends 'master/master.html' %}
+{% load static %}
+{% block content %}
+<section id="main-content">
+    <section class="wrapper">
+      <h3><i class="fa fa-angle-right"></i> Teacher Dashboard</h3>
+      <!-- BASIC FORM ELELEMNTS -->
+      <div class="row mt">
+        <div class="col-lg-12">
+          <div class="form-panel">
+            <h3>Welcome, {{request.session.teacher}}</h3>
+          </div>
+        </div>
+        <!-- col-lg-12-->
+      </div>
+      <!-- /row -->
+      <div class="row mt">
+        <div class="col-lg-12">
+
+          <div class="form-panel" style="padding: 10px;">
+            <h4 class="mb"><i class="fa fa-angle-right"></i> Levels you teach</h4>
+                <h3>Levels</h3>
+
+                {% for level in levels %}
+                <ul>
+                  <li><b>{{ level.levelName }}</b></li>
+                </ul>
+                {% empty %}
+                <center><b>No Leve you teach found. Click Add in the above list</b></center></td>
+                {% endfor %}
+                    <a href="/teacher/subjects" class="btn btn-primary">Done!</a>
+          </div>
+          <div class="form-panel">
+            <h4 class="mb"><i class="fa fa-angle-right"></i> Which level(s) do you teach?</h4>
+            <table class="table">
+                <th>Levels</th>
+                <th>Actions</th>
+
+                {% for level1 in levels_not %}
+                <tr>
+                    <td>{{ level1.levelName }}</td>
+                    <td>
+                        <a href="/teacher/addlevel/{{level1.id}}" class="btn btn-primary">Add</a>
+                    </td>
+                    
+                </tr>
+                {% empty %}
+                <tr>
+                  <td><center><b>No Level you don't teach found</b></center></td>
+                </tr>
+                {% endfor %}
+        </table>
+          </div>
+
+        </div>
+      </div>
+     
+  <div class="modal fade" id="modalContactForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <form action="/teacher/savesubject" method="POST">
+        {% csrf_token %}
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Add Subjects</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">       
+        <div class="form-group">
+          <input type="text" name="sub_name" class="form-control" placeholder="Enter Subject Name">
+        </div>
+
+        <div class="form-group">
+          <input type="number" name="units" class="form-control" placeholder="How many units for this subject?">
+        </div>
+        <div class="form-group">           
+          <select name="level" class="form-control">
+            <option value=''>Select Level</option>
+              {% for level in levels %}
+              <option value='{{level.id}}'>{{level.levelName}}</option>
+              {% endfor %}
+          </select>           
+        </div>
+
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <button class="btn btn-primary">Save Subject </button>
+      </div>
+    </form>
+    </div>
+  </div>
+</div>
+
+    </section>
+  </section>  
+
+  
+  {% endblock %}
+
+  
