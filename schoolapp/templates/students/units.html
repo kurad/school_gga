@@ -1,0 +1,36 @@
+{% extends 'master/master_student.html' %}
+{% load static %}
+{% block content %}
+<section id="main-content">
+    <section class="wrapper">
+      <div class="row mt">
+        <div class="col-lg-12">
+          <div class="form-panel">
+            <h3>Welcome, {{request.session.students}}</h3>
+          </div>
+        </div>
+        <!-- col-lg-12-->
+      </div>
+      <!-- /row -->
+      <div class="row mt">
+        <div class="col-lg-12">
+          <div class="form-panel">
+              <br>
+                <h3>Select Unit</h3>
+              <br>                
+                  <ul>
+                    {% for unit in units %}
+                    <li><a href="/student/content/{{unit.id}}" >Unit {{ unit.unit_number }} : {{ unit.unit_title }}</a></li>
+                    {% empty %}
+                    <b>No units yet added for this subject </b>
+                    {% endfor %}
+                  </ul>
+                <a href="/student/dashboard" class="btn btn-danger" >Back to Subjects</a>
+          </div>
+        </div>
+      </div>
+      <ul>
+      </ul>
+    </section>
+  </section>
+  {% endblock %}

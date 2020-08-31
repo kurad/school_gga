@@ -23,7 +23,8 @@
 
                 {% for level in levels %}
                 <ul>
-                  <li><b>{{ level.levelName }}</b></li>
+                  <li><b> <a href="/teacher/level/{{level.id}}" > {{ level.levelName }}    </a> </b>                     
+                    <a href="/teacher/removelevel/{{ level.id}}" >Remove</a></li>
                 </ul>
                 {% empty %}
                 <center><b>No Leve you teach found. Click Add in the above list</b></center></td>
@@ -31,7 +32,7 @@
                     <a href="/teacher/subjects" class="btn btn-primary">Done!</a>
           </div>
           <div class="form-panel">
-            <h4 class="mb"><i class="fa fa-angle-right"></i> Which level(s) do you teach?</h4>
+            <h4 class="mb"><i class="fa fa-angle-right"></i> Level(s) you don't teach?</h4>
             <table class="table">
                 <th>Levels</th>
                 <th>Actions</th>

@@ -1,0 +1,84 @@
+{% extends 'master/master_student.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+<section id="main-content">
+    <section class="wrapper">
+      <h3><i class="fa fa-angle-right"></i> Student Dashboard</h3>
+      <!-- BASIC FORM ELELEMNTS -->
+      <div class="row mt">
+        <div class="col-lg-12">
+          <div class="form-panel">
+            <h3>Welcome, {{request.session.students}}</h3>
+          </div>
+        </div>
+        <!-- col-lg-12-->
+      </div>
+      <!-- /row -->
+      <div class="row mt">
+        <div class="col-lg-12">
+          <div class="form-panel">
+            <h4 class="mb"><i class="fa fa-angle-right"></i>All Subjects</h4>
+              <br><br>
+            <table class="table">
+                <th>Subject Name</th>
+                <th>Number of units</th>
+                <th>Combination</th>
+                <th>Action</th>
+
+                {% for subject in subject_register_for %}
+                <tr>
+                    <td>{{ subject.sub_name }}</td>
+                    <td>{{ subject.units}}</td>
+                    <td>{{ subject.level}}</td>
+                    <td><a href="/student/units/{{subject.id}}" class="btn btn-success">Choose</a>
+                      <a href="/student/removesubject/{{subject.id}}" class="btn btn-success">Remove</a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                  <td colspan="4">No subjects found</td>
+                </tr>
+                <tr>
+                  <td colspan="4">
+                    <a href="" class="btn btn-primary"  data-toggle="modal" data-target="#myModalSubjects" ><i class="fa fa-plus"></i> Choose Subjects</a>
+                  </td>
+                </tr>
+                {% endfor %}
+        </table>
+        <a href="" class="btn btn-primary"  data-toggle="modal" data-target="#myModalSubjects" ><i class="fa fa-plus"></i> Choose Subjects</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal Register -->
+      <form action="" class="form-horizontal style-form" method="POST">
+        {% csrf_token %}
+      <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModalSubjects" class="modal fade">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 class="modal-title">All Subjects</h4>
+            </div>
+            <div class="modal-body">    
+                <table class="table">
+                  {% for subject in subjects_not_added %}
+                  <tr>              
+                    <td> {{ subject.sub_name }}  ({{ subject.level}} ) </td>
+                    <td><a href="/student/choosesubject/{{subject.id}}" class="btn btn-success">Add</a></td>
+                  </tr>
+                  {% endfor %}
+                </table>             
+            </div>
+            <div class="modal-footer">
+              <button data-dismiss="modal" class="btn btn-default" type="button">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+      <!-- modal register -->
+    </section>
+  </section>
+  {% endblock %}
