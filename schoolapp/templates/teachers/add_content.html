@@ -21,7 +21,7 @@
             <h4 class="mb"><i class="fa fa-angle-right"></i> Unit {{units.unit_number}}: {{units.unit_title}} </h4>
               <br>
               <br>
-                <form action="/teacher/posttopic/{{units.id}}" method="POST">
+                <form action="/teacher/posttopic/{{units.id}}" method="POST"  enctype="multipart/form-data">
                   {% csrf_token %}
                     <div class="form-group col-6">
                       <input type="hidden" name="id" value="{{units.id}}">
@@ -33,7 +33,7 @@
                 </div>
                   <div class="form-group col-6">
                     <label>Learning Objectives</label>
-                    <textarea name="objective" class="form-control">
+                    <textarea name="objective" class="form-control post_content">
                     </textarea>
                 </div>
                 <div class="form-group col-6">
@@ -57,4 +57,10 @@
       </ul>
     </section>
   </section>
+  <script src="https://cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
+
+<script>
+    CKEDITOR.replace( 'objective' );
+    CKEDITOR.replace( 'content' );
+</script>
   {% endblock %}

@@ -25,7 +25,7 @@
         <div class="col-lg-12">
           <div class="form-panel">
             <h4 class="mb"><i class="fa fa-angle-right"></i> Objectives</h4>
-              {{ topics.objectives }}          
+              {{ topics.objectives|safe }}          
           </div>
         </div>
       </div>
@@ -33,7 +33,7 @@
         <div class="col-lg-12">
           <div class="form-panel">
             <h4 class="mb"> Content</h4>
-                        {{ topics.content }}
+                        {{ topics.content|safe }}
                         <br><br>
                 <a href="/student/units/{{topics.unit_id}}" class="btn btn-danger" >Go Back</a>
           </div>
